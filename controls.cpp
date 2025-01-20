@@ -17,13 +17,38 @@ Controls::Controls() {
     KEY_MAPPING["\033[C"] = RIGHT;
     KEY_MAPPING[" "] = CONFIRM;
     KEY_MAPPING["\n"] = CONFIRM;
+    KEY_MAPPING["\r"] = CONFIRM;
 }
+
+Controls::~Controls() {}
 
 string Controls::getInput() {
 #ifdef _WIN32
-    if (_kbhit()) {
-        return string(1, _getch());
+    if (!_kbhit()) {
+        return "";
     }
+
+    const int input = _getch();
+
+    if (input != 224) {
+        return string(1, input);
+    }
+
+    const int extra = _getch();
+
+    switch(extra) {
+        case 72:
+            return "W";
+        case 80:
+            return "S";
+        case 75:
+            return "A";
+        case 77:
+            return "D";
+        default:
+            return "";
+    }
+
 #else
     struct termios _terminal;
     struct termios terminal;
@@ -52,6 +77,10 @@ string Controls::getInput() {
 
 Controls::KEY_INPUT Controls::getKey() {
     const string input = getInput();
+
+    if (input == "") {
+        return UNKNOWN;
+    }
 
     map<string, KEY_INPUT>::iterator mapping = KEY_MAPPING.find(input);
 

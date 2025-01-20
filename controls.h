@@ -15,6 +15,9 @@ using namespace std;
 
 class Controls {
 public:
+    Controls();
+    ~Controls();
+
     enum KEY_INPUT {
         UP,
         DOWN,
@@ -23,8 +26,6 @@ public:
         CONFIRM,
         UNKNOWN,
     };
-
-    Controls();
 
     KEY_INPUT getKey();
 private:

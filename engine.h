@@ -2,27 +2,31 @@
 #define ENGINE_H
 
 #include "controls.h"
+#include "state.h"
+#include "handler.h"
 
 #include <map>
 #include <mutex>
 #include <string>
 
-#include <iostream>
-
-using namespace std;
-
 class Engine {
 public:
     static Engine* get();
 
+    StateManager* getStateManager();
+    HandlerManager* getHandlerManager();
+    
     Engine* start();
-    Controls* getControls();
+    void stop();
 private:
+    Engine();
+    ~Engine();
+
     static Engine* instance;
     static mutex mtx;
-    Controls* controls;
 
-    Engine();
+    StateManager* stateManager;
+    HandlerManager* handlerManager;
 };
 
 #endif // ENGINE_H
