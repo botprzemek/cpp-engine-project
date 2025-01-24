@@ -18,7 +18,7 @@ public:
     Controls();
     ~Controls();
 
-    enum KEY_INPUT {
+    enum KeyInput {
         UP,
         DOWN,
         LEFT,
@@ -27,9 +27,9 @@ public:
         UNKNOWN,
     };
 
-    KEY_INPUT getKey();
+    KeyInput getKey();
 private:
-    static map<string, KEY_INPUT> KEY_MAPPING;
+    static map<string, KeyInput> KEY_MAPPING;
 
     string getInput();
 };

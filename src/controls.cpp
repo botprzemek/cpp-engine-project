@@ -1,6 +1,6 @@
 #include "controls.h"
 
-map<string, Controls::KEY_INPUT> Controls::KEY_MAPPING;
+map<string, Controls::KeyInput> Controls::KEY_MAPPING;
 
 Controls::Controls() {
     KEY_MAPPING["w"] = UP;
@@ -75,14 +75,14 @@ string Controls::getInput() {
     return "";
 }
 
-Controls::KEY_INPUT Controls::getKey() {
+Controls::KeyInput Controls::getKey() {
     const string input = getInput();
 
     if (input == "") {
         return UNKNOWN;
     }
 
-    map<string, KEY_INPUT>::iterator mapping = KEY_MAPPING.find(input);
+    map<string, KeyInput>::iterator mapping = KEY_MAPPING.find(input);
 
     if (mapping == KEY_MAPPING.end()) {
         return UNKNOWN;

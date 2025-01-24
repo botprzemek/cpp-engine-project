@@ -31,6 +31,8 @@ StateManager* Engine::getStateManager() {
 }
 
 Engine* Engine::start() {
+    handlerManager->render();
+
     while (true) {
         handlerManager->handle();
     }

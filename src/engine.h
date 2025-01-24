@@ -1,9 +1,8 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
-#include "controls.h"
-#include "state.h"
-#include "handler.h"
+#include "state_manager.h"
+#include "handler_manager.h"
 
 #include <map>
 #include <mutex>
